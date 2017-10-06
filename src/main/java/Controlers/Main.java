@@ -17,7 +17,8 @@ public class Main {
     private FirstHod h1;
     @Autowired
     private EstHod h2;
-
+    @Autowired
+    private CheckUserHod us;
     @Autowired
 //    @Qualifier("randomHod")
     private HodCPU h3;
@@ -30,7 +31,7 @@ public class Main {
 
     private int[] array = new int[10];
 
-    private String name = "",ret = "pages/crossnull";
+    private String name = "", ret = "pages/crossnull";
     final Random r = new Random();
     boolean typeGameCross = false;
     boolean typeGameNulss = false;
@@ -57,7 +58,6 @@ public class Main {
             }
         }
 
-
         //вывод имени пользователя и типа игры
         if (typeGameCross) typeGameName = "крестиками";
         else if (typeGameNulss) typeGameName = "ноликами";
@@ -73,12 +73,14 @@ public class Main {
         if (!checkWinCross && !checkWinNulls) {
             //начало хода
             array[0] = 1;
-            //проверка куда походил пользователь
+            //куда походил пользователь
             for (int i = 1; i < 10; i++) {
                 if (request.getParameter("button" + i) != null) {
                     nomerHodaUsera = i;
                 }
             }
+            //проверка хода пользователя
+            boolean goodUsHod = us.goodHod(array, nomerHodaUsera) == 1 && nomerHodaUsera > 0;
 
             //установка хода пользователя
             array = u.useraHod(array, typeGameCross, typeGameNulss, nomerHodaUsera);
@@ -87,9 +89,9 @@ public class Main {
             array = winCh.winsChech(array);
 
             //случайный ход компьютера
-            boolean firstHod = h1.sdelanHod(array)==1;
-            boolean estHod = h2.estPole(nomerHodaUsera,array)==1;
-            array = h3.randomHod(array, nomerHodaUsera, typeGameCross, typeGameNulss, firstHod, estHod);
+            boolean firstHod = h1.nesdelanHod(array) == 1;
+            boolean estHod = h2.estPole(nomerHodaUsera, array) == 1;
+            array = h3.randomHod(array, nomerHodaUsera, typeGameCross, typeGameNulss, firstHod, estHod, goodUsHod);
 
             // проверка победы
             array = winCh.winsChech(array);

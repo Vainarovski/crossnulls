@@ -1,14 +1,13 @@
-
 package Controlers;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class FirstHod {
-    public Integer nesdelanHod(int[] array) {
+public class CheckUserHod {
+    public Integer goodHod(int[] array, int nomerHodaUsera) {
         //проверка первого хода
         for (int i = 1; i < 10; i++) {
-            if (array[i] > 0) return 0;
+            if (nomerHodaUsera == i && array[i] > 0) return 0;
         }
         return 1;
     }

@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251"%>
 <html>
 <head>
     <title>Game</title>
@@ -68,12 +67,12 @@
     <tr>
         <td>
             <form action="/in/crossnull" method="post">
-                <button type="submit" name="button10" value="10">Повторить игру</button>
+                <button type="submit" name="button10" value="10">РџРѕРІС‚РѕСЂРёС‚СЊ РёРіСЂСѓ</button>
             </form>
         </td>
         <td>
             <form action="/" method="post">
-                <button type="submit" name="button11" value="11">Новая игра</button>
+                <button type="submit" name="button11" value="11">РќРѕРІР°СЏ РёРіСЂР°</button>
             </form>
         </td>
     </tr>
